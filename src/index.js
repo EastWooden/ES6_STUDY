@@ -192,3 +192,287 @@ console.log(list.next().value);
 console.log(list.next().value);
 console.log(list.next().value);
 
+
+
+// ES6箭头函数和扩展
+
+
+
+function add(a, b) {
+  return a + b;
+}
+console.log(add(1, 2));
+//我们声明了一个add函数，然后传入a和b两个值，返回a + b的值。 然后我们在控制台打印了这个函数的返回结果，这里是3.
+
+ // 默认值
+//在ES6中给我们增加了默认值的操作，我们修改上边的代码，可以看到现在只需要传递一个参数也是可以正常运行的。
+
+
+function add(a, b = 1) {
+  return a + b;
+}
+console.log(add(1));
+1
+2
+3
+4
+function add(a, b = 1) {
+  return a + b;
+}
+console.log(add(1));
+//主动抛出错误
+//在使用Vue的框架中，可以经常看到框架主动抛出一些错误，比如v - for必须有: key值。那尤大神是如何做到的那？其实很简单，ES6中我们直接用throw new Error(xxxx), 就可以抛出错误。
+
+
+// function add(a, b = 1) {
+
+//   if (a == 0) {
+//     throw new Error('This is error')
+//   }
+//   return a + b;
+// }
+
+// console.log(add(0));
+
+
+//函数中的严谨模式
+//我们在ES中就经常使用严谨模式来进行编程，但是必须写在代码最上边，相当于全局使用。在ES6中我们可以写在函数体中，相当于针对函数来使用。
+
+
+
+// function add(a, b = 1) {
+//   'use strict'
+//   if (a == 0) {
+//     throw new Error('This is error');
+//   }
+//   return a + b;
+// }
+
+// console.log(add(1));
+//上边的代码如果运行的话，你会发现浏览器控制台报错，这是ES6中的一个坑，如果没人指导的话，可能你会陷进去一会。这个错误的原因就是如果你使用了默认值，再使用严谨模式的话，就会有冲突，所以我们要取消默认值的操作，这时候你在运行就正常了。
+
+
+// function add(a, b) {
+//   'use strict'
+//   if (a == 0) {
+//     throw new Error('This is error');
+//   }
+//   return a + b;
+// }
+
+// console.log(add(1, 2));
+
+//获得需要传递的参数个数
+//如果你在使用别人的框架时，不知道别人的函数需要传递几个参数怎么办？ES6为我们提供了得到参数的方法(xxx.length).我们用上边的代码看一下需要传递的参数个数。
+
+
+// function add(a, b) {
+//   'use strict'
+//   if (a == 0) {
+//     throw new Error('This is error');
+//   }
+//   return a + b;
+// }
+
+// console.log(add.length);
+
+// function add(a, b) {
+//   'use strict'
+//   if (a == 0) {
+//     throw new Error('This is error');
+//   }
+//   return a + b;
+// }
+
+// console.log(add.length);
+//这时控制台打印出了2，但是如果我们去掉严谨模式，并给第二个参数加上默认值的话，这时候add.length的值就变成了1， 也就是说它得到的是必须传入的参数。
+
+//箭头函数
+//在学习Vue的时候，我已经大量的使用了箭头函数，因为箭头函数真的很好用，我们来看一个最简单的箭头函数。也就是上边我们写的add函数，进行一个改变，写成箭头函数。
+
+
+// var add = (a, b = 1) => a + b;
+// console.log(add(1));
+//{ } 的使用
+
+//在箭头函数中，方法体内如果是两句话，那就需要在方法体外边加上{ } 括号。例如下边的代码就必须使用{ }.
+
+
+// var add = (a, b = 1) => {
+//   console.log('jspang')
+//   return a + b;
+// };
+// console.log(add(1));
+// var add = (a, b = 1) => {
+//   console.log('jspang')
+//   return a + b;
+// };
+// console.log(add(1));
+//箭头函数中不可加new，也就是说箭头函数不能当构造函数进行使用。
+
+//最后我还是要重复强调的是，你一定要动手敲一下代码，要不你是学不会的，在工作中的改变就是学习了ES6得语法，在写新项目的时候尽量使用ES6带来的便利和特点，这样才能快速成长。
+
+//对象的函数解构
+let json_fun = {
+  'id':'jsdong',
+  'name': 'moudong',
+  'haha':'hah'
+}
+
+function fun({id,b='moudong',haha}) {
+  console.log(id, b, haha);
+}
+fun(json_fun);
+
+//数组解构
+
+let arr_arr = ['a','b','c']
+function arr_arrfun(a,b,c) {
+  console.log(arr_arr)
+}
+arr_arrfun(arr_arr);
+
+// 数组转换成字符串
+// join()方法
+
+let arr = ['jspang','技术胖','前端教程'];
+console.log(arr.join('|'));  //将数组转换成字符串，中间加了|线
+
+// toString() 方法
+console.log(arr.toString());
+
+// 对象赋值
+let name = 'jsdong';
+let skill = 'web';
+var obj = {name,skill};
+console.log(obj);
+
+// 对象key值构建
+
+let key = 'skill';
+var obj_skill = {
+  [key]: 'web'
+}
+console.log(obj_skill);
+
+// Object.is() 对象比较
+let obj1 = {name: 'jsdong'};
+let obj2 = {name: 'jsdong'};
+
+console.log(obj1.name === obj2.name ); //true
+console.log(Object.is(obj1.name,obj2.name)) //true
+  // === 为同值相等，is()为严格相等。
+console.log(+0 === -0);  //true
+console.log(NaN === NaN); //false
+console.log(Object.is(+0, -0)); //false
+console.log(Object.is(NaN, NaN)); //true
+
+
+// Object.assign() 合并对象
+
+var obj_a = {a: 'jsdong'};
+var obj_b = {b: '技术东'};
+var obj_c = {c: 'web'};
+let obj_d = Object.assign(obj_a, obj_b, obj_c)
+
+console.log(obj_d)
+
+//Symbol()
+
+//Set和WeakSet数据结构
+
+// Set和Array 的区别是Set不允许内部有重复的值，如果有只显示一个，相当于去重。虽然Set很像数组，但是他不是数组。
+let setArr = new Set(['jspang','技术胖','web']);
+setArr.add('前端技术') //用add进行追加 set {'jspang','技术胖','web','前端技术'}
+setArr.delete('前端技术'); //删除 delete
+console.log(setArr); //set {'jspang','技术胖','web'}
+console.log(setArr.has('web')); //true 查找has:
+setArr.clear(); //删除clear:
+
+// set的循环
+// for...of ... 循环
+
+for(let item of setArr ){
+  console.log(item);
+}
+
+// size属性
+// size属性可以获得Set值得数量
+
+console.log(setArr.size);
+
+// WeakSet的声明
+
+let weakObj = new WeakSet();
+let obj_weakObj= { a: 'jspang', b: '技术胖' }
+weakObj.add(obj_weakObj);
+
+console.log(weakObj);
+
+// 这里需要注意的是，如果你直接在new 的时候就放入值，将报错。
+
+// WeakSet里边的值也是不允许重复的，我们来测试一下。
+
+let obj_weakObj1 = { a: 'jspang', b: '技术胖' }
+let obj_weakObj2 = obj_weakObj1;
+
+weakObj.add(obj_weakObj1);
+weakObj.add(obj_weakObj2);
+
+console.log(weakObj);
+
+//map数据结构
+
+let json_map = {
+  name:'moudong',
+  skill: 'web',
+}
+let map = new Map();
+map.set(json_map,'iam');
+console.log(map);
+map.set('hah', json_map); //为map增加值
+
+// promise 主要用来处理回调函数
+// 1.洗菜做饭 2.坐下来吃饭 3.收拾桌子洗完
+let state = 1;
+
+function step1(resolve, reject) {
+  console.log('1.开始-洗菜做饭');
+  if (state == 1) {
+    resolve('洗菜做饭--完成');
+  } else {
+    reject('洗菜做饭--出错');
+  }
+}
+
+
+function step2(resolve, reject) {
+  console.log('2.开始-坐下来吃饭');
+  if (state == 1) {
+    resolve('坐下来吃饭--完成');
+  } else {
+    reject('坐下来吃饭--出错');
+  }
+}
+
+
+function step3(resolve, reject) {
+  console.log('3.开始-收拾桌子洗完');
+  if (state == 1) {
+    resolve('收拾桌子洗完--完成');
+  } else {
+    reject('收拾桌子洗完--出错');
+  }
+}
+
+new Promise(step1).then(function (val) {
+  console.log(val);
+  return new Promise(step2);
+
+}).then(function (val) {
+  console.log(val);
+  return new Promise(step3);
+}).then(function (val) {
+  console.log(val);
+  return val;
+});

@@ -620,10 +620,6 @@ new Promise(step1).then(function (val) {
 // class 类的使用
 
 var Coder = function () {
-  function Coder() {
-    _classCallCheck(this, Coder);
-  }
-
   _createClass(Coder, [{
     key: "name",
     //class 的声明
@@ -644,8 +640,36 @@ var Coder = function () {
     }
   }]);
 
+  function Coder(a, b) {
+    _classCallCheck(this, Coder);
+
+    //用constructor 来进行为class传递参数
+    this.a = a;
+    this.b = b;
+  }
+
+  _createClass(Coder, [{
+    key: "addclass",
+    value: function addclass() {
+      return this.a + this.b;
+    }
+  }]);
+
   return Coder;
 }();
 
 var jsdonghah = new Coder(); //实例化一个类
 jsdonghah.info('jsdong', 'web');
+
+var jsdonghah1 = new Coder(1, 2); //实例化另一个类
+
+console.log(jsdonghah1.addclass());
+
+//export 输出 进行模块化
+//import 输入 引入
+
+// import  namedong  from './tempt.js';
+
+// import { skill_web, addskill} from './tempt'
+
+// console.log(namedong);

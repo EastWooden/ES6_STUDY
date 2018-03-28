@@ -490,7 +490,29 @@ class Coder {   //class 的声明
   info (name,skill) {
     console.log(this.name(name)+','+ this.skill(skill));  //这里的this指的是这个类
   }
+
+  constructor(a,b) {  //用constructor 来进行为class传递参数
+    this.a = a;
+    this.b = b;
+  }
+  addclass () {
+    return this.a+this.b;
+  }
 }
 
 let jsdonghah = new Coder;  //实例化一个类
 jsdonghah.info('jsdong','web');
+
+let jsdonghah1 = new Coder(1,2)  //实例化另一个类
+
+console.log(jsdonghah1.addclass());
+
+//export 输出 进行模块化
+//import 输入 引入
+
+// import  namedong  from './tempt.js';
+
+// import { skill_web, addskill} from './tempt'
+
+// console.log(namedong);
+

@@ -432,7 +432,7 @@ map.set(json_map,'iam');
 console.log(map);
 map.set('hah', json_map); //为map增加值
 
-// promise 主要用来处理回调函数
+// promise 主要用来处理多步操作
 // 1.洗菜做饭 2.坐下来吃饭 3.收拾桌子洗完
 let state = 1;
 
@@ -464,11 +464,10 @@ function step3(resolve, reject) {
     reject('收拾桌子洗完--出错');
   }
 }
-
+//Promise 的使用
 new Promise(step1).then(function (val) {
   console.log(val);
   return new Promise(step2);
-
 }).then(function (val) {
   console.log(val);
   return new Promise(step3);
@@ -476,3 +475,22 @@ new Promise(step1).then(function (val) {
   console.log(val);
   return val;
 });
+
+// class 类的使用
+
+class Coder {   //class 的声明
+  name (val) {
+    console.log(val);
+    return val; //一定要有返回值，不然值为undefined
+  }
+  skill (val) {
+    console.log(val);
+    return val;
+  }
+  info (name,skill) {
+    console.log(this.name(name)+','+ this.skill(skill));  //这里的this指的是这个类
+  }
+}
+
+let jsdonghah = new Coder;  //实例化一个类
+jsdonghah.info('jsdong','web');

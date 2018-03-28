@@ -1,6 +1,10 @@
 "use strict";
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -571,7 +575,7 @@ map.set(json_map, 'iam');
 console.log(map);
 map.set('hah', json_map); //为map增加值
 
-// promise 主要用来处理回调函数
+// promise 主要用来处理多步操作
 // 1.洗菜做饭 2.坐下来吃饭 3.收拾桌子洗完
 var state = 1;
 
@@ -601,7 +605,7 @@ function step3(resolve, reject) {
     reject('收拾桌子洗完--出错');
   }
 }
-
+//Promise 的使用
 new Promise(step1).then(function (val) {
   console.log(val);
   return new Promise(step2);
@@ -612,3 +616,36 @@ new Promise(step1).then(function (val) {
   console.log(val);
   return val;
 });
+
+// class 类的使用
+
+var Coder = function () {
+  function Coder() {
+    _classCallCheck(this, Coder);
+  }
+
+  _createClass(Coder, [{
+    key: "name",
+    //class 的声明
+    value: function name(val) {
+      console.log(val);
+      return val; //一定要有返回值，不然值为undefined
+    }
+  }, {
+    key: "skill",
+    value: function skill(val) {
+      console.log(val);
+      return val;
+    }
+  }, {
+    key: "info",
+    value: function info(name, skill) {
+      console.log(this.name(name) + ',' + this.skill(skill)); //这里的this指的是这个类
+    }
+  }]);
+
+  return Coder;
+}();
+
+var jsdonghah = new Coder(); //实例化一个类
+jsdonghah.info('jsdong', 'web');
